@@ -1,20 +1,12 @@
 # Movie Recommender: Hybrid Content-Based + Collaborative Filtering System
 
-A movie recommendation engine built from scratch, combining content-based
+movie recommendation engine, combining content-based
 filtering (what a movie is about) with collaborative filtering (who liked
-what) into a single hybrid system. Built on the MovieLens small dataset
-and Kaggle's TMDB metadata.
+what). Built on the MovieLens small dataset and Kaggle's TMDB metadata.
 
-## Overview
-Most recommenders lean on one signal alone: either "movies similar
-to this one" (content-based) or "users like you also liked..."
-(CF). This project combines both, and empirically
-validates that the combination outperforms either approach individually.
 
-## Why Hybrid?
 Early EDA revealed two structural problems that neither method alone
 can fully solve:
-
 - **The ratings matrix is 98.3% sparse** (610 users × 9,724 movies,
   100,836 ratings). A quarter of all movies have only a single rating;
   CF has almost nothing to learn from for the long tail of the catalog.
@@ -67,16 +59,15 @@ fall back to CF-only scoring.
 **Precision@10, hybrid vs. individual methods** (25-user independent
 sample):
 
-| Method | Precision@10 |
-|---|---|
-| Hybrid | 0.132 |
-| Content-only | 0.056 |
-| CF-only | 0.020 |
+|    Method    | Precision@10 |
+|--------------|--------------|
+| Hybrid       |     0.132    |
+| Content-only |     0.056    |
+| CF-only      |     0.020    |
 
-The hybrid approach outperformed CF-only by ~6.6x and content-only by
-~2.4x. Interestingly, content-only outperformed CF-only here — evidence
-the two signals capture genuinely different, complementary information
-rather than one simply dominating the other.
+^^hybrid approach outperformed CF by 6.6x and content-only by
+2.4x. 
+
 
 ## Known Limitations
 - **Tone-blind:** TF-IDF catches vocabulary/concept overlap but not
